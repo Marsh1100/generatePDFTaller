@@ -1,0 +1,91 @@
+@model API.Dtos.StudentDto
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Reporte de Notas</title>
+    <style>
+      /* Estilos generales */
+      body {
+        font-family: Arial, sans-serif;
+        color: #993e3e;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Estilos del encabezado */
+      header {
+        text-align: center;
+        padding: 20px;
+      }
+
+      header img {
+        max-width: 100px;
+        height: auto;
+        border: 6px solid #993e3e;
+      }
+
+      header h1 {
+        font-size: 24px;
+        margin: 10px 0;
+        color: #993e3e;
+      }
+
+      /* Estilos de la tabla */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      table th,
+      table td {
+        border: 1px solid #28295a;
+        padding: 8px;
+        text-align: left;
+      }
+
+      /* Estilos de la tabla - Cabecera */
+      table th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+      }
+
+      /* Estilos de la tabla - Filas impares */
+      table tbody tr:nth-child(odd) {
+        background-color: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="@Model.Profile" alt="Imagen del estudiante" />
+      <h1>@Model.NameStudent</h1>
+      <p>Student code: @Model.StudentIdentification</p>
+    </header>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th>Subject</th>
+            <th>Period 1</th>
+            <th>Period 2</th>
+            <th>Period 3</th>
+            <th>Average</th>
+          </tr>
+        </thead>
+        <tbody>
+                @foreach (var notes in Model.Notes)
+                {<tr>
+                <td>@notes.SubjectName</td>
+                <td>@notes.Note1</td>
+                <td>@notes.Note2</td>
+                <td>@notes.Note3</td>
+                <td>@notes.Average</td>
+              </tr>}
+        </tbody>
+      </table>
+    </main>
+  </body>
+</html>
+
