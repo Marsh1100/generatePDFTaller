@@ -29,12 +29,14 @@ NetCore 7.0
      ```dotnet ef migrations add FirstMigration --project ./Persistence/ --startup-project ./API/ --output-dir ./Data/Migrations ```<br><br>
      ```dotnet ef database update --project ./Persistence --startup-project ./API```
 7. Cree la carpeta Services junto con su respectiva interfaz e implementación:
+   Interfaz:
    ```
    public interface IPdfService{
     byte[] GeneratePdf(string htmlContent);
     byte[] GeneratePdfs (List<string> htmlContents);}
    ```
-   <br><br>
+   <br>
+   Clase del servicio:
    ```
        public class PdfService : IPdfService
     {
@@ -97,7 +99,7 @@ NetCore 7.0
         services.AddControllersWithViews(); 
     }
    ```
-9. En el controller crea un método en la clase StudentController:
+9. Crea un método en la clase StudentController para generar los html:
     ```
     public string GenerateHtml (StudentDto student){
         var sw = new StringWriter();
@@ -122,6 +124,7 @@ NetCore 7.0
     }
     ```
 10. Ahora puede crear allí mismo las solicitudes HTTP:
+    Método para el reporte de un estudiante, filtrado por el id:
     ```
     [HttpGet("generate-reportStudent/{studentId}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -146,7 +149,8 @@ NetCore 7.0
         }
     }
     ```
-    <br><br>
+    Método para el reporte de todos los estudiantes:
+    <br>
     ```
     [HttpGet("generate-reportStudents")]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -176,6 +180,7 @@ NetCore 7.0
     ```
 11. Accede a la carpeta API ```cd API ``` y ejecuta el comando    ```dotnet run ```<br>
   Le aparecerá algo como esto:<br>
+  ![image](https://github.com/yllensc/generatePDFCsharp/assets/131481951/9eede092-b899-4c32-9c14-a78721f05b2b)
 <br>Nota:<br> Tenga en cuenta que el servidor es local y el puerto puede cambiar. <br>
 
 ¡Listo! Ahora podrá ejecutar los endpoints sin problema.<br>
