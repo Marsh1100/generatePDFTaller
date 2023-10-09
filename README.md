@@ -29,7 +29,6 @@ NetCore 7.0
      ```dotnet ef migrations add FirstMigration --project ./Persistence/ --startup-project ./API/ --output-dir ./Data/Migrations ```<br><br>
      ```dotnet ef database update --project ./Persistence --startup-project ./API```
 7. Cree la carpeta Services junto con su respectiva interfaz e implementación:
-   Interfaz:
    ```
    public interface IPdfService{
     byte[] GeneratePdf(string htmlContent);
@@ -37,13 +36,11 @@ NetCore 7.0
    ```
    <br>
    Clase del servicio:
-   ```
-       public class PdfService : IPdfService
-    {
-        private readonly IConverter _converter;
-        public PdfService(IConverter converter){
-            _converter = converter;
-        }
+   
+         public class PdfService : IPdfService{
+         private readonly IConverter _converter;
+         public PdfService(IConverter converter){
+             _converter = converter;}
 
         public byte[] GeneratePdf(string htmlContent)
         {
@@ -87,8 +84,7 @@ NetCore 7.0
 
             return _converter.Convert(pdfAllStudents);
         }
-    }
-   ```
+       }
 8. En su archivo de extenciones, inyecte el servicio, debería tener algo así:
    ```
    public static void AddAplicacionServices(this IServiceCollection services)
@@ -123,7 +119,7 @@ NetCore 7.0
         return html;
     }
     ```
-10. Ahora puede crear allí mismo las solicitudes HTTP:
+10. Ahora puede crear allí mismo las solicitudes HTTP: <br>
     Método para el reporte de un estudiante, filtrado por el id:
     ```
     [HttpGet("generate-reportStudent/{studentId}")]
