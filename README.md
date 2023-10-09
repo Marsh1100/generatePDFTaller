@@ -15,7 +15,7 @@ NetCore 7.0
 ### Ejecutar proyecto 🔧
 1. Clone el repositorio en la carpeta que desee abriendo la terminal y ejecute el siguiente code
    ```
-   
+   https://github.com/Marsh1100/generatePDFTaller.git
    ```
 2. Acceda al la carpeta que se acaba de generar
    ```cd  ```
