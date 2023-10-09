@@ -1,6 +1,5 @@
 
 using System.Text;
-using API.Services;
 using Application.Repository;
 using Application.UnitOfWork;
 using AspNetCoreRateLimit;
@@ -28,9 +27,7 @@ public static class ApplicationServiceExtensions
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IStudent, StudentRepository>();
-        services.AddScoped<IPdfService, GeneratorPDFService>();
         services.AddControllersWithViews(); 
-
     }
 
      public static void ConfigureRateLimiting(this IServiceCollection services)
