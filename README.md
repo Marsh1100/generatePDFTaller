@@ -95,7 +95,22 @@ NetCore 7.0
         services.AddControllersWithViews(); 
     }
    ```
-9. Crea un método en la clase StudentController para generar los html:
+9. Contructor en la clase StudentController
+    ```
+     private readonly ICompositeViewEngine _viewEngine;
+     private readonly IUnitOfWork _unitOfWork;
+     private readonly IPdfService _pdfService;
+     private readonly IMapper _mapper;
+ 
+     public StudentController(ICompositeViewEngine viewEngine, IUnitOfWork unitOfWork, IPdfService pdfService, IMapper mapper)
+     {
+         _mapper = mapper;
+         _pdfService = pdfService;
+         _unitOfWork = unitOfWork;
+         _viewEngine = viewEngine;
+     }
+    ```
+11. Crea un método en la clase StudentController para generar los html:
     ```
     public string GenerateHtml (StudentDto student){
         var sw = new StringWriter();
@@ -119,7 +134,7 @@ NetCore 7.0
         return html;
     }
     ```
-10. Ahora puede crear allí mismo las solicitudes HTTP: <br>
+12. Ahora puede crear allí mismo las solicitudes HTTP: <br>
     Método para el reporte de un estudiante, filtrado por el id:
     ```
     [HttpGet("generate-reportStudent/{studentId}")]
@@ -174,7 +189,7 @@ NetCore 7.0
         }
     }
     ```
-11. Accede a la carpeta API ```cd API ``` y ejecuta el comando    ```dotnet run ```<br>
+13. Accede a la carpeta API ```cd API ``` y ejecuta el comando    ```dotnet run ```<br>
   Le aparecerá algo como esto:<br>
   ![image](https://github.com/yllensc/generatePDFCsharp/assets/131481951/9eede092-b899-4c32-9c14-a78721f05b2b)
 <br>Nota:<br> Tenga en cuenta que el servidor es local y el puerto puede cambiar. <br>
